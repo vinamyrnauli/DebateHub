@@ -1221,7 +1221,7 @@ export default function App() {
           </div>
 
           <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            © 2024 DebateHub. All rights reserved.
+            © 2026 DebateHub. All rights reserved.
           </div>
         </div>
       </footer>
