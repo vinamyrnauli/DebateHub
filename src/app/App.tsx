@@ -95,9 +95,16 @@ function FeatureCarousel() {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const goNext = useCallback(() => {
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev + 1);
-  }, []);
+    setCurrentIndex((prev) => {
+      if (prev >= N) {
+        // Safeguard: jika transitionEnd terlewat, paksa reset ke 0
+        setIsTransitioning(false);
+        return 0;
+      }
+      setIsTransitioning(true);
+      return prev + 1;
+    });
+  }, [N]);
 
   const goPrev = useCallback(() => {
     // Backward: jump without animation to avoid needing leading clones
@@ -119,7 +126,11 @@ function FeatureCarousel() {
       if (intervalRef.current) clearInterval(intervalRef.current);
       return;
     }
-    intervalRef.current = setInterval(goNext, 3000);
+    intervalRef.current = setInterval(() => {
+      // Mencegah slider jalan terus-menerus saat membuka tab browser lain
+      if (document.hidden) return;
+      goNext();
+    }, 3000);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
@@ -478,10 +489,10 @@ function PerformanceScreen() {
 
 function ProductPreview() {
   const screens = [
-    { label: "Tournament Discovery", content: <TournamentScreen /> },
-    { label: "Team Matching", content: <TeamScreen /> },
-    { label: "Motion Bank", content: <MotionScreen /> },
-    { label: "Performance Tracking", content: <PerformanceScreen /> },
+    { label: "Tournament Discovery", content: <img src="/images/tournament.jpg" alt="Tournament Discovery" className="w-full h-full object-cover" /> },
+    { label: "Team Matching", content: <img src="/images/sparring.jpg" alt="Team Matching" className="w-full h-full object-cover" /> },
+    { label: "Motion Bank", content: <img src="/images/mosi.jpg" alt="Motion Bank" className="w-full h-full object-cover" /> },
+    { label: "Performance Tracking", content: <img src="/images/perftrack.jpg" alt="Performance Tracking" className="w-full h-full object-cover" /> },
   ];
 
   return (
@@ -598,7 +609,7 @@ export default function App() {
             {/* CTA Button */}
             <div className="hidden md:flex items-center">
               <a
-                href="https://www.figma.com/proto/your-prototype-link"
+                href="https://www.figma.com/proto/TZSdpwmXVzN2P1Fk8D7ep6/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit--Community-?node-id=188-920&t=JCkZuNJ63JPzGdg5-1"
                 className="px-5 py-2.5 bg-primary text-white text-sm font-medium rounded-xl hover:bg-primary/90 transition-all shadow-sm hover:shadow-md"
               >
                 Get Started
@@ -653,7 +664,7 @@ export default function App() {
                   Community
                 </a>
                 <a
-                  href="https://www.figma.com/proto/your-prototype-link"
+                  href="https://www.figma.com/proto/TZSdpwmXVzN2P1Fk8D7ep6/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit--Community-?node-id=188-920&t=JCkZuNJ63JPzGdg5-1"
                   className="px-5 py-2.5 bg-primary text-white text-sm font-medium rounded-xl hover:bg-primary/90 transition-all shadow-sm text-center"
                 >
                   Get Started
@@ -684,7 +695,7 @@ export default function App() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="https://www.figma.com/proto/your-prototype-link"
+                  href="https://www.figma.com/proto/TZSdpwmXVzN2P1Fk8D7ep6/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit--Community-?node-id=188-920&t=JCkZuNJ63JPzGdg5-1"
                   className="inline-flex items-center justify-center px-6 py-3.5 bg-primary text-white font-medium rounded-xl hover:bg-primary/90 transition-all shadow-sm hover:shadow-md"
                 >
                   Get Started
@@ -1179,7 +1190,7 @@ export default function App() {
               team, and tracking your debate growth in one place.
             </p>
             <a
-              href="https://www.figma.com/proto/your-prototype-link"
+              href="https://www.figma.com/proto/TZSdpwmXVzN2P1Fk8D7ep6/eCommerce-App-UI-Kit---Case-Study-Ecommerce-Mobile-App-UI-kit--Community-?node-id=188-920&t=JCkZuNJ63JPzGdg5-1"
               className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary font-semibold rounded-xl hover:bg-white/95 transition-all shadow-lg hover:shadow-xl"
             >
               Start Your Debate Journey
