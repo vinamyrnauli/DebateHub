@@ -712,43 +712,12 @@ export default function App() {
 
             {/* Hero Illustration */}
             <div className="relative">
-              <div className="bg-gradient-to-br from-secondary via-white to-accent/20 rounded-3xl p-8 lg:p-12 shadow-xl">
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center shadow-lg">
-                      <Users className="w-8 h-8 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="h-3 bg-white/60 rounded-full w-3/4 mb-2"></div>
-                      <div className="h-3 bg-white/40 rounded-full w-1/2"></div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center shadow-lg">
-                      <Trophy className="w-8 h-8 text-accent-foreground" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="h-3 bg-white/60 rounded-full w-2/3 mb-2"></div>
-                      <div className="h-3 bg-white/40 rounded-full w-1/3"></div>
-                    </div>
-                  </div>
-
-                  <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-primary/10 rounded-full"></div>
-                      <div className="flex-1">
-                        <div className="h-2 bg-primary/20 rounded-full w-2/3"></div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-accent/20 rounded-full"></div>
-                      <div className="flex-1">
-                        <div className="h-2 bg-accent/30 rounded-full w-3/4"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div className="rounded-3xl shadow-2xl overflow-hidden aspect-[4/3] lg:aspect-auto h-full">
+                <img 
+                  src="/images/cover.jpg" 
+                  alt="DebateHub Platform" 
+                  className="w-full h-full object-cover object-center"
+                />
               </div>
             </div>
           </div>
